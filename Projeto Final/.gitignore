@@ -141,7 +141,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# pytype static type analyzer
+# pytype events type analyzer
 .pytype/
 
 ### PyCharm ###
@@ -297,6 +297,6 @@ fabric.properties
 
 # Pyre type checker
 
-# pytype static type analyzer
+# pytype events type analyzer
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm

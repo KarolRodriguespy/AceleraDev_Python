@@ -16,15 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from events.api.viewsets import EventsViewSet, AgentsViewSet, UsersViewSet
+from rest_framework.authtoken.views import obtain_auth_token
 
+from events.views import EventApiViewSet
 
 router = routers.DefaultRouter()
-router.register(r'event', EventsViewSet)
-router.register(r'agent', AgentsViewSet)
-router.register(r'user', UsersViewSet)
+router.register(r'events', EventApiViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('get_token/', obtain_auth_token)
+
 ]
