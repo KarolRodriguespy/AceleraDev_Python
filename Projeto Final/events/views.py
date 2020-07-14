@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from rest_framework import viewsets
@@ -10,8 +10,9 @@ from events.serializers import EventModelSerializer
 
 
 class EventApiViewSet(viewsets.ModelViewSet):
-
+    serializer_class = EventModelSerializer
     permission_classes = [IsAuthenticated]
 
     queryset = Event.objects.all()
-    serializer_class = EventModelSerializer
+
+

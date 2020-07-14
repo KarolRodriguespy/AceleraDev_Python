@@ -21,7 +21,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from events.views import EventApiViewSet
 
 router = routers.DefaultRouter()
-router.register(r'events', EventApiViewSet)
+router.register(r'events', EventApiViewSet, basename='events')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
