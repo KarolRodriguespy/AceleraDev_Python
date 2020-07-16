@@ -13,6 +13,10 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
 * Postgress
 
 
+Documentação API:
+
+
+
 ### Como baixar os arquivos
 
 -  Faça uma cópia do repositório na sua máquina
@@ -74,6 +78,6 @@ Windows
 
 >
 
-       Acesse o link: http://127.0.0.1:8000/events e informe o seu token no header da sua requisição
+       Acesse o link: http://127.0.0.1:8000/events/list e informe o seu token no header da sua requisição
 
              
