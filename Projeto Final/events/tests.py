@@ -1,17 +1,26 @@
+from rest_framework import status
+from rest_framework.test import APIRequestFactory, APIClient, APITestCase
 
 
 # Create your tests here.
 
-from django.test import TestCase
 
-from .models import Event
+class IntegrationTests(APITestCase):
 
-class EventModelTestCase(TestCase):
+    def test_create_event(self):
+        self.client = APIClient()
 
-    def test_return_string(self):
-        event = Event.objects.create(
-            level='information',
-            log='Teste'
+        data = {'level': 'warning',
+                'log': 'teste'}
+        request = self.client.post('http://127.0.0.1:8000/events/', data=data, format='json')
+        self.assertEqual(request.status_code, status.HTTP_201_CREATED)
 
-        )
-        self.assertEqual(str(event), 'Teste')
+    def test_detail_event(self):
+        self.client = APIClient()
+        request = self.client.get('http://127.0.0.1:8000/events/', format='json')
+        self.assertEquals(request.status_code, status.HTTP_200_OK)
+
+    def test_deleted_event(self):
+        self.client = APIClient()
+        request = self.client.delete('http://127.0.0.1:8000/events/18/', format='json')
+        self.assertEquals(request.status_code, status.HTTP_204_NO_CONTENT)
