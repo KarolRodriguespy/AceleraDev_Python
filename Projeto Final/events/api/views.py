@@ -49,6 +49,6 @@ def detail_event(request, event_id):
 
 class EventApiListView(ListAPIView):
     serializer_class = EventModelSerializer
-    # permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     queryset = Event.objects.all()
