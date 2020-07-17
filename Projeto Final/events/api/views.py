@@ -1,4 +1,5 @@
 # Create your views here.
+from rest_framework import filters
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -10,6 +11,7 @@ from events.models import Event
 
 from events.api.serializers import EventModelSerializer
 
+#duvida: Como fazer que pra acessar cada endpoint com autenticação?
 
 @api_view(['POST'])
 def create_event(request):
@@ -19,6 +21,7 @@ def create_event(request):
 
     Example:
         { "level": "Warning",
+            "environment": "dev",
             "log": test}
 
 
@@ -86,7 +89,10 @@ class EventApiListView(ListAPIView):
 
     """
 
-    serializer_class = EventModelSerializer
+
     permission_classes = [IsAuthenticated]
 
     queryset = Event.objects.all()
+    serializer_class = EventModelSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['log', 'level']
